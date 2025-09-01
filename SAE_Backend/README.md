@@ -42,6 +42,19 @@ backend/
 - OpenAI API key (for embeddings)
 - CUDA (optional, for GPU acceleration)
 
+```bash
+# 1. Create environment from conda export (system packages)
+conda create -n your_env_name python=3.9
+conda activate your_env_name
+
+# 2. Install conda packages first
+grep -v "pypi_0" SAE_Backend/requirements.txt | conda install --file /dev/stdin
+
+# 3. Install pip packages
+grep "pypi_0" SAE_Backend/requirements.txt | sed 's/=pypi_0//g' | sed 's/=/==/g' > pip_requirements.txt
+pip install -r pip_requirements.txt
+```
+
 
 ### Running the Server
 
